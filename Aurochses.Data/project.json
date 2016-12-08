@@ -1,8 +1,8 @@
-{
+﻿{
   "version": "1.0.0",
   "description": "Layer to access database with Unit of Work, Repository and Entity classes.",
   "copyright": "Aurochses 2016",
-  "authors": ["Aurochses"],
+  "authors": [ "Aurochses" ],
 
   "buildOptions": {
     "xmlDoc": true
@@ -17,7 +17,7 @@
       "imports": "dnxcore50"
     }
   },
-  
+
   "tooling": {
     "defaultNamespace": "Aurochses.Data"
   }

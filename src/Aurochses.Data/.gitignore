@@ -1,6 +1,0 @@
-# Build results
-[Bb]in/
-[Oo]bj/
-
-# DNX
-project.lock.json

@@ -6,7 +6,7 @@
     "tasks": [{
         "taskName": "build",
         "args": [
-            "${workspaceRoot}\\src\\Aurochses.Data\\project.json"
+            "${workspaceRoot}\\Aurochses.Data\\project.json"
         ],
         "isBuildCommand": true,
         "problemMatcher": "$msCompile"
