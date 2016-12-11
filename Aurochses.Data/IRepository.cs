@@ -17,6 +17,20 @@ namespace Aurochses.Data
         TEntity Get(TType id);
 
         /// <summary>
+        /// Finds entity of type T from repository by identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>TEntity.</returns>
+        TEntity Find(TType id);
+
+        /// <summary>
+        /// Checks if entity of type T with identifier exists in repository.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns><c>true</c> if exists, <c>false</c> otherwise.</returns>
+        bool Exists(TType id);
+
+        /// <summary>
         /// Saves entity in the repository.
         /// </summary>
         /// <param name="entity">The entity.</param>
