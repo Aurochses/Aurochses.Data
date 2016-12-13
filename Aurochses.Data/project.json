@@ -1,6 +1,6 @@
 {
-  "version": "1.0.2",
-  "description": "Layer to access database with Unit of Work, Repository and Entity classes.",
+  "version": "1.0.3",
+  "description": "Layer to access data storage with Unit of Work, Repository and Entity classes.",
   "copyright": "Aurochses 2016",
   "authors": [ "Aurochses" ],
 

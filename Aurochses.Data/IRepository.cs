@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+
 namespace Aurochses.Data
 {
     /// <summary>
@@ -17,11 +19,26 @@ namespace Aurochses.Data
         TEntity Get(TType id);
 
         /// <summary>
+        /// Asynchronously gets entity of type T from repository by identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns><cref>Task{TEntity}</cref>.</returns>
+        /// <exception cref="Exceptions.DataNotFoundException">Has exception <see cref="Exceptions.DataNotFoundException"/> if entity is null.</exception>
+        Task<TEntity> GetAsync(TType id);
+
+        /// <summary>
         /// Finds entity of type T from repository by identifier.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>TEntity.</returns>
         TEntity Find(TType id);
+
+        /// <summary>
+        /// Asynchronously finds entity of type T from repository by identifier.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns><cref>Task{TEntity}</cref>.</returns>
+        Task<TEntity> FindAsync(TType id);
 
         /// <summary>
         /// Checks if entity of type T with identifier exists in repository.
@@ -31,12 +48,27 @@ namespace Aurochses.Data
         bool Exists(TType id);
 
         /// <summary>
+        /// Asynchronously checks if entity of type T with identifier exists in repository.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns><c>true</c> if exists, <c>false</c> otherwise.</returns>
+        Task<bool> ExistsAsync(TType id);
+
+        /// <summary>
         /// Saves entity in the repository.
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <param name="startTrackProperties">if set to <c>true</c> marks entity as modified.</param>
         /// <returns>TEntity.</returns>
         TEntity InsertOrUpdate(TEntity entity, bool startTrackProperties = false);
+
+        /// <summary>
+        /// Asynchronously saves entity in the repository.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <param name="startTrackProperties">if set to <c>true</c> marks entity as modified.</param>
+        /// <returns><cref>Task{TEntity}</cref>.</returns>
+        Task<TEntity> InsertOrUpdateAsync(TEntity entity, bool startTrackProperties = false);
 
         /// <summary>
         /// Deletes the specified entity.
