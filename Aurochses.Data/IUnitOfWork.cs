@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 
 namespace Aurochses.Data
 {
@@ -14,5 +15,12 @@ namespace Aurochses.Data
         /// <returns>Number of rows affected.</returns>
         /// <exception cref="Exceptions.DataStorageException"></exception>
         int Commit();
+
+        /// <summary>
+        /// Asynchronously commits all changes.
+        /// </summary>
+        /// <returns>Number of rows affected.</returns>
+        /// <exception cref="Exceptions.DataStorageException"></exception>
+        Task<int> CommitAsync();
     }
 }
