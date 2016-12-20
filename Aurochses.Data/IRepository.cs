@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Aurochses.Data
@@ -5,40 +8,40 @@ namespace Aurochses.Data
     /// <summary>
     /// Interface of repository for data layer.
     /// </summary>
-    /// <typeparam name="TEntity">The type of the t entity.</typeparam>
-    /// <typeparam name="TType">The type of the t type.</typeparam>
+    /// <typeparam name="TEntity">The type of the T entity.</typeparam>
+    /// <typeparam name="TType">The type of the T type.</typeparam>
     public interface IRepository<TEntity, TType>
         where TEntity : IEntity<TType>
     {
         /// <summary>
         /// Gets entity of type T from repository by identifier.
+        /// If no entity is found, then null is returned.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns>TEntity.</returns>
-        /// <exception cref="Exceptions.DataNotFoundException">Has exception <see cref="Exceptions.DataNotFoundException"/> if entity is null.</exception>
         TEntity Get(TType id);
 
         /// <summary>
+        /// Gets enities of type T from repository.
+        /// </summary>
+        /// <param name="filter">Query filter.</param>
+        /// <returns><cref>IList{TEntity}</cref>.</returns>
+        IList<TEntity> Get(Expression<Func<TEntity, bool>> filter = null);
+
+        /// <summary>
         /// Asynchronously gets entity of type T from repository by identifier.
+        /// If no entity is found, then null is returned.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns><cref>Task{TEntity}</cref>.</returns>
-        /// <exception cref="Exceptions.DataNotFoundException">Has exception <see cref="Exceptions.DataNotFoundException"/> if entity is null.</exception>
         Task<TEntity> GetAsync(TType id);
 
         /// <summary>
-        /// Finds entity of type T from repository by identifier.
+        /// Asynchronously gets enities of type T from repository.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns>TEntity.</returns>
-        TEntity Find(TType id);
-
-        /// <summary>
-        /// Asynchronously finds entity of type T from repository by identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns><cref>Task{TEntity}</cref>.</returns>
-        Task<TEntity> FindAsync(TType id);
+        /// <param name="filter">Query filter.</param>
+        /// <returns><cref>Task{IList{TEntity}}</cref>.</returns>
+        Task<IList<TEntity>> GetAsync(Expression<Func<TEntity, bool>> filter = null);
 
         /// <summary>
         /// Checks if entity of type T with identifier exists in repository.
