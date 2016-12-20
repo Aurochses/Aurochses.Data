@@ -33,14 +33,14 @@ namespace Aurochses.Data
         /// If no entity is found, then null is returned.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        /// <returns><cref>Task{TEntity}</cref>.</returns>
+        /// <returns><cref>TEntity</cref>.</returns>
         Task<TEntity> GetAsync(TType id);
 
         /// <summary>
         /// Asynchronously gets enities of type T from repository.
         /// </summary>
         /// <param name="filter">Query filter.</param>
-        /// <returns><cref>Task{IList{TEntity}}</cref>.</returns>
+        /// <returns><cref>IList{TEntity}</cref>.</returns>
         Task<IList<TEntity>> GetAsync(Expression<Func<TEntity, bool>> filter = null);
 
         /// <summary>
@@ -51,11 +51,25 @@ namespace Aurochses.Data
         bool Exists(TType id);
 
         /// <summary>
+        /// Checks if entity of type T exists in repository.
+        /// </summary>
+        /// <param name="filter">Query filter.</param>
+        /// <returns><c>true</c> if exists, <c>false</c> otherwise.</returns>
+        bool Exists(Expression<Func<TEntity, bool>> filter = null);
+
+        /// <summary>
         /// Asynchronously checks if entity of type T with identifier exists in repository.
         /// </summary>
         /// <param name="id">The identifier.</param>
         /// <returns><c>true</c> if exists, <c>false</c> otherwise.</returns>
         Task<bool> ExistsAsync(TType id);
+
+        /// <summary>
+        /// Asynchronously checks if entity of type T exists in repository.
+        /// </summary>
+        /// <param name="filter">Query filter.</param>
+        /// <returns><c>true</c> if exists, <c>false</c> otherwise.</returns>
+        Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> filter = null);
 
         /// <summary>
         /// Saves entity in the repository.
@@ -70,7 +84,7 @@ namespace Aurochses.Data
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <param name="startTrackProperties">if set to <c>true</c> marks entity as modified.</param>
-        /// <returns><cref>Task{TEntity}</cref>.</returns>
+        /// <returns><cref>TEntity</cref>.</returns>
         Task<TEntity> InsertOrUpdateAsync(TEntity entity, bool startTrackProperties = false);
 
         /// <summary>
