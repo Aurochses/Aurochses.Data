@@ -1,5 +1,5 @@
 {
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Layer to access data storage with Unit of Work, Repository and Entity classes.",
   "copyright": "Aurochses 2016",
   "authors": [ "Aurochses" ],
