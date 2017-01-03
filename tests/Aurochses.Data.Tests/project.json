@@ -1,0 +1,27 @@
+﻿{
+  "version": "1.0.0",
+  "testRunner": "xunit",
+  "buildOptions": {
+    "debugType": "portable"
+  },
+  "dependencies": {
+    "xunit": "2.2.0-beta4-build3444",
+    "dotnet-test-xunit": "2.2.0-preview2-build1029",
+    "xunit.runner.visualstudio": "2.1.0",
+    "Aurochses.Data": {
+      "target": "project"
+    },
+    "Moq": "4.6.38-alpha"
+  },
+  "frameworks": {
+    "netcoreapp1.1": {
+      "dependencies": {
+        "Microsoft.NETCore.App": {
+          "type": "platform",
+          "version": "1.1.0"
+        },
+        "Microsoft.CodeCoverage": "1.0.2"
+      }
+    }
+  }
+}
