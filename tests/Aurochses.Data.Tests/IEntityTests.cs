@@ -1,4 +1,5 @@
 ﻿using Moq;
+using System;
 using Xunit;
 
 namespace Aurochses.Data.Tests
@@ -6,12 +7,20 @@ namespace Aurochses.Data.Tests
     public class IEntityTests
     {
         [Fact]
+        public void Inherit_IEquatable()
+        {
+            var mockEntity = new Mock<IEntity<int>>();
+
+            Assert.True(mockEntity.Object is IEquatable<IEntity<int>>);
+        }
+
+        [Fact]
         public void Id_Get_Success()
         {
             const int id = 1;
 
             var mockEntity = new Mock<IEntity<int>>();
-            mockEntity.SetupGet(x => x.Id).Returns(id);
+            mockEntity.SetupGet(m => m.Id).Returns(id);
 
             Assert.Equal(id, mockEntity.Object.Id);
         }
@@ -23,7 +32,7 @@ namespace Aurochses.Data.Tests
 
             var result = 0;
             var mockEntity = new Mock<IEntity<int>>();
-            mockEntity.SetupSet(x => x.Id).Callback(value => { result = value; });
+            mockEntity.SetupSet(m => m.Id).Callback(value => { result = value; });
 
             mockEntity.Object.Id = id;
 
@@ -36,7 +45,7 @@ namespace Aurochses.Data.Tests
             const bool isNew = true;
 
             var mockEntity = new Mock<IEntity<int>>();
-            mockEntity.Setup(x => x.IsNew()).Returns(isNew);
+            mockEntity.Setup(m => m.IsNew()).Returns(isNew);
 
             Assert.Equal(isNew, mockEntity.Object.IsNew());
         }

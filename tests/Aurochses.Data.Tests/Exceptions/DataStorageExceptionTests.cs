@@ -7,6 +7,14 @@ namespace Aurochses.Data.Tests.Exceptions
     public class DataStorageExceptionTests
     {
         [Fact]
+        public void Inherit_Exception()
+        {
+            var dataStorageException = new DataStorageException(new Exception());
+
+            Assert.True(dataStorageException is Exception);
+        }
+
+        [Fact]
         public void Constuctor_NewItem_Created()
         {
             const string message = "test exception";
