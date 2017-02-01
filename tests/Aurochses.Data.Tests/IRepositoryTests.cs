@@ -26,13 +26,33 @@ namespace Aurochses.Data.Tests
         }
 
         [Fact]
-        public void Get_ByExpression_ReturnEntity()
+        public void GetTModel_ById_ReturnModel()
+        {
+            var model = new FakeModel();
+
+            _mockRepository.Setup(m => m.Get<FakeModel>(1)).Returns(model);
+
+            Assert.Equal(model, _mockRepository.Object.Get<FakeModel>(1));
+        }
+
+        [Fact]
+        public void Get_ByExpression_ReturnListOfEntity()
         {
             var entity = new FakeEntity();
 
             _mockRepository.Setup(m => m.Get(x => x.Id == 1)).Returns(new List<FakeEntity> { entity });
 
             Assert.Contains(entity, _mockRepository.Object.Get(x => x.Id == 1));
+        }
+
+        [Fact]
+        public void GetTModel_ByExpression_ReturnListOfModel()
+        {
+            var model = new FakeModel();
+
+            _mockRepository.Setup(m => m.Get<FakeModel>(x => x.Id == 1)).Returns(new List<FakeModel> { model });
+
+            Assert.Contains(model, _mockRepository.Object.Get<FakeModel>(x => x.Id == 1));
         }
 
         [Fact]
