@@ -27,13 +27,33 @@ namespace Aurochses.Data.Tests
         }
 
         [Fact]
-        public async Task GetAsync_ByExpression_ReturnEntity()
+        public async Task GetTModelAsync_ById_ReturnModel()
+        {
+            var model = new FakeModel();
+
+            _mockRepository.Setup(m => m.GetAsync<FakeModel>(1)).ReturnsAsync(model);
+
+            Assert.Equal(model, await _mockRepository.Object.GetAsync<FakeModel>(1));
+        }
+
+        [Fact]
+        public async Task GetAsync_ByExpression_ReturnListOfEntity()
         {
             var entity = new FakeEntity();
 
             _mockRepository.Setup(m => m.GetAsync(x => x.Id == 1)).ReturnsAsync(new List<FakeEntity> { entity });
 
             Assert.Contains(entity, await _mockRepository.Object.GetAsync(x => x.Id == 1));
+        }
+
+        [Fact]
+        public async Task GetTModelAsync_ByExpression_ReturnListOfModel()
+        {
+            var model = new FakeModel();
+
+            _mockRepository.Setup(m => m.GetAsync<FakeModel>(x => x.Id == 1)).ReturnsAsync(new List<FakeModel> { model });
+
+            Assert.Contains(model, await _mockRepository.Object.GetAsync<FakeModel>(x => x.Id == 1));
         }
 
         [Fact]
