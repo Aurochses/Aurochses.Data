@@ -10,7 +10,7 @@ namespace Aurochses.Data
     /// </summary>
     /// <typeparam name="TEntity">The type of the T entity.</typeparam>
     /// <typeparam name="TType">The type of the T type.</typeparam>
-    public interface IRepository<TEntity, TType>
+    public interface IRepository<TEntity, in TType>
         where TEntity : IEntity<TType>
     {
         /// <summary>

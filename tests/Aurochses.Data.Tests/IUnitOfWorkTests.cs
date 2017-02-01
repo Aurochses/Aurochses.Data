@@ -4,14 +4,21 @@ using Xunit;
 
 namespace Aurochses.Data.Tests
 {
+    // ReSharper disable once InconsistentNaming
     public class IUnitOfWorkTests
     {
+        private readonly Mock<IUnitOfWork> _mockUnitOfWork;
+
+        public IUnitOfWorkTests()
+        {
+            _mockUnitOfWork = new Mock<IUnitOfWork>();
+        }
+
         [Fact]
         public void Inherit_IEquatable()
         {
-            var mockUnitOfWork = new Mock<IUnitOfWork>();
-
-            Assert.True(mockUnitOfWork.Object is IDisposable);
+            // ReSharper disable once IsExpressionAlwaysTrue
+            Assert.True(_mockUnitOfWork.Object is IDisposable);
         }
 
         [Fact]
@@ -19,10 +26,9 @@ namespace Aurochses.Data.Tests
         {
             const int result = 1;
 
-            var mockUnitOfWork = new Mock<IUnitOfWork>();
-            mockUnitOfWork.Setup(m => m.Commit()).Returns(result);
+            _mockUnitOfWork.Setup(m => m.Commit()).Returns(result);
 
-            Assert.Equal(result, mockUnitOfWork.Object.Commit());
+            Assert.Equal(result, _mockUnitOfWork.Object.Commit());
         }
     }
 }

@@ -6,17 +6,24 @@ using Xunit;
 
 namespace Aurochses.Data.Tests
 {
+    // ReSharper disable once InconsistentNaming
     public class IRepositoryAsyncTests
     {
+        private readonly Mock<IRepository<FakeEntity, int>> _mockRepository;
+
+        public IRepositoryAsyncTests()
+        {
+            _mockRepository = new Mock<IRepository<FakeEntity, int>>();
+        }
+
         [Fact]
         public async Task GetAsync_ById_ReturnEntity()
         {
             var entity = new FakeEntity();
 
-            var mockRepository = new Mock<IRepository<FakeEntity, int>>();
-            mockRepository.Setup(m => m.GetAsync(1)).ReturnsAsync(entity);
+            _mockRepository.Setup(m => m.GetAsync(1)).ReturnsAsync(entity);
 
-            Assert.Equal(entity, await mockRepository.Object.GetAsync(1));
+            Assert.Equal(entity, await _mockRepository.Object.GetAsync(1));
         }
 
         [Fact]
@@ -24,28 +31,25 @@ namespace Aurochses.Data.Tests
         {
             var entity = new FakeEntity();
 
-            var mockRepository = new Mock<IRepository<FakeEntity, int>>();
-            mockRepository.Setup(m => m.GetAsync(x => x.Id == 1)).ReturnsAsync(new List<FakeEntity> { entity });
+            _mockRepository.Setup(m => m.GetAsync(x => x.Id == 1)).ReturnsAsync(new List<FakeEntity> { entity });
 
-            Assert.Contains(entity, await mockRepository.Object.GetAsync(x => x.Id == 1));
+            Assert.Contains(entity, await _mockRepository.Object.GetAsync(x => x.Id == 1));
         }
 
         [Fact]
         public async Task ExistsAsync_ById_Success()
         {
-            var mockRepository = new Mock<IRepository<FakeEntity, int>>();
-            mockRepository.Setup(m => m.ExistsAsync(1)).ReturnsAsync(true);
+            _mockRepository.Setup(m => m.ExistsAsync(1)).ReturnsAsync(true);
 
-            Assert.True(await mockRepository.Object.ExistsAsync(1));
+            Assert.True(await _mockRepository.Object.ExistsAsync(1));
         }
 
         [Fact]
         public async Task ExistsAsync_ByExpression_ReturnEntity()
         {
-            var mockRepository = new Mock<IRepository<FakeEntity, int>>();
-            mockRepository.Setup(m => m.ExistsAsync(x => x.Id == 1)).ReturnsAsync(true);
+            _mockRepository.Setup(m => m.ExistsAsync(x => x.Id == 1)).ReturnsAsync(true);
 
-            Assert.True(await mockRepository.Object.ExistsAsync(x => x.Id == 1));
+            Assert.True(await _mockRepository.Object.ExistsAsync(x => x.Id == 1));
         }
 
         [Fact]
@@ -53,10 +57,9 @@ namespace Aurochses.Data.Tests
         {
             var entity = new FakeEntity();
 
-            var mockRepository = new Mock<IRepository<FakeEntity, int>>();
-            mockRepository.Setup(m => m.InsertOrUpdateAsync(entity, false)).ReturnsAsync(entity);
+            _mockRepository.Setup(m => m.InsertOrUpdateAsync(entity, false)).ReturnsAsync(entity);
 
-            Assert.Equal(entity, await mockRepository.Object.InsertOrUpdateAsync(entity, false));
+            Assert.Equal(entity, await _mockRepository.Object.InsertOrUpdateAsync(entity));
         }
     }
 }

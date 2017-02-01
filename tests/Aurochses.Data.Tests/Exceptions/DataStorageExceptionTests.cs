@@ -11,6 +11,7 @@ namespace Aurochses.Data.Tests.Exceptions
         {
             var dataStorageException = new DataStorageException(new Exception());
 
+            // ReSharper disable once IsExpressionAlwaysTrue
             Assert.True(dataStorageException is Exception);
         }
 
