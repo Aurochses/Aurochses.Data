@@ -17,8 +17,7 @@ namespace Aurochses.Data.Tests
         [Fact]
         public void Inherit_IEquatable()
         {
-            // ReSharper disable once IsExpressionAlwaysTrue
-            Assert.True(_mockUnitOfWork.Object is IDisposable);
+            Assert.IsAssignableFrom<IDisposable>(_mockUnitOfWork.Object);
         }
 
         [Fact]

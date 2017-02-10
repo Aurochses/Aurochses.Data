@@ -17,8 +17,7 @@ namespace Aurochses.Data.Tests
         [Fact]
         public void Inherit_IEquatable()
         {
-            // ReSharper disable once IsExpressionAlwaysTrue
-            Assert.True(_mockEntity.Object is IEquatable<IEntity<int>>);
+            Assert.IsAssignableFrom<IEquatable<IEntity<int>>>(_mockEntity.Object);
         }
 
         [Fact]
