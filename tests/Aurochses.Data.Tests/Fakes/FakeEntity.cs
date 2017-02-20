@@ -8,12 +8,12 @@ namespace Aurochses.Data.Tests.Fakes
 
         public bool Equals(IEntity<int> other)
         {
-            throw new NotImplementedException();
+            throw new Exception("Equals is fake method!");
         }
 
         public bool IsNew()
         {
-            throw new NotImplementedException();
+            throw new Exception("IsNew is fake method!");
         }
     }
 }

@@ -11,7 +11,7 @@ namespace Aurochses.Data.Tests
 
         public IUnitOfWorkAsyncTests()
         {
-            _mockUnitOfWork = new Mock<IUnitOfWork>();
+            _mockUnitOfWork = new Mock<IUnitOfWork>(MockBehavior.Strict);
         }
 
         [Fact]

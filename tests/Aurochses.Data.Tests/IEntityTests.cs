@@ -11,7 +11,7 @@ namespace Aurochses.Data.Tests
 
         public IEntityTests()
         {
-            _mockEntity = new Mock<IEntity<int>>();
+            _mockEntity = new Mock<IEntity<int>>(MockBehavior.Strict);
         }
 
         [Fact]

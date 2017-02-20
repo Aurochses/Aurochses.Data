@@ -12,7 +12,7 @@ namespace Aurochses.Data.Tests
 
         public IRepositoryTests()
         {
-            _mockRepository = new Mock<IRepository<FakeEntity, int>>();
+            _mockRepository = new Mock<IRepository<FakeEntity, int>>(MockBehavior.Strict);
         }
 
         [Fact]
