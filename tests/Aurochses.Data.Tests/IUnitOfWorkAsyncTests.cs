@@ -17,10 +17,12 @@ namespace Aurochses.Data.Tests
         [Fact]
         public async Task CommitAsync_Success()
         {
+            // Arrange
             const int result = 1;
 
             _mockUnitOfWork.Setup(m => m.CommitAsync()).ReturnsAsync(result);
 
+            // Act & Assert
             Assert.Equal(result, await _mockUnitOfWork.Object.CommitAsync());
         }
     }
