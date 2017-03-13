@@ -11,16 +11,18 @@ namespace Aurochses.Data.Tests
 
         public IUnitOfWorkAsyncTests()
         {
-            _mockUnitOfWork = new Mock<IUnitOfWork>();
+            _mockUnitOfWork = new Mock<IUnitOfWork>(MockBehavior.Strict);
         }
 
         [Fact]
         public async Task CommitAsync_Success()
         {
+            // Arrange
             const int result = 1;
 
             _mockUnitOfWork.Setup(m => m.CommitAsync()).ReturnsAsync(result);
 
+            // Act & Assert
             Assert.Equal(result, await _mockUnitOfWork.Object.CommitAsync());
         }
     }

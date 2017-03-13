@@ -11,23 +11,25 @@ namespace Aurochses.Data.Tests
 
         public IUnitOfWorkTests()
         {
-            _mockUnitOfWork = new Mock<IUnitOfWork>();
+            _mockUnitOfWork = new Mock<IUnitOfWork>(MockBehavior.Strict);
         }
 
         [Fact]
         public void Inherit_IEquatable()
         {
-            // ReSharper disable once IsExpressionAlwaysTrue
-            Assert.True(_mockUnitOfWork.Object is IDisposable);
+            // Arrange & Act & Assert
+            Assert.IsAssignableFrom<IDisposable>(_mockUnitOfWork.Object);
         }
 
         [Fact]
         public void Commit_Success()
         {
+            // Arrange
             const int result = 1;
 
             _mockUnitOfWork.Setup(m => m.Commit()).Returns(result);
 
+            // Act & Assert
             Assert.Equal(result, _mockUnitOfWork.Object.Commit());
         }
     }
