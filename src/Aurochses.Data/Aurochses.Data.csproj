@@ -1,7 +1,12 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp1.1</TargetFramework>
+    <Version>1.1.0</Version>
+    <Description>Layer to access data storage with Unit of Work, Repository and Entity classes.</Description>
+    <Authors>Aurochses</Authors>
+    <Company>Aurochses</Company>
+    <Copyright>Aurochses 2017</Copyright>
   </PropertyGroup>
 
 </Project>
