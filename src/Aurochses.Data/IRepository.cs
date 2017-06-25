@@ -104,20 +104,26 @@ namespace Aurochses.Data
         Task<bool> ExistsAsync(Expression<Func<TEntity, bool>> filter = null);
 
         /// <summary>
-        /// Saves entity in the repository.
+        /// Inserts entity in the repository.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns>TEntity.</returns>
+        TEntity Insert(TEntity entity);
+
+        /// <summary>
+        /// Asynchronously inserts entity in the repository.
+        /// </summary>
+        /// <param name="entity">The entity.</param>
+        /// <returns><cref>TEntity</cref>.</returns>
+        Task<TEntity> InsertAsync(TEntity entity);
+
+        /// <summary>
+        /// Updates entity in the repository.
         /// </summary>
         /// <param name="entity">The entity.</param>
         /// <param name="startTrackProperties">if set to <c>true</c> marks entity as modified.</param>
         /// <returns>TEntity.</returns>
-        TEntity InsertOrUpdate(TEntity entity, bool startTrackProperties = false);
-
-        /// <summary>
-        /// Asynchronously saves entity in the repository.
-        /// </summary>
-        /// <param name="entity">The entity.</param>
-        /// <param name="startTrackProperties">if set to <c>true</c> marks entity as modified.</param>
-        /// <returns><cref>TEntity</cref>.</returns>
-        Task<TEntity> InsertOrUpdateAsync(TEntity entity, bool startTrackProperties = false);
+        TEntity Update(TEntity entity, bool startTrackProperties = false);
 
         /// <summary>
         /// Deletes the specified entity by identifier.

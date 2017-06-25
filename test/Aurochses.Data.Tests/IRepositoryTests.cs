@@ -84,15 +84,27 @@ namespace Aurochses.Data.Tests
         }
 
         [Fact]
-        public void InsertOrUpdate_Entity_Success()
+        public void Insert_Entity_Success()
         {
             // Arrange
             var entity = new FakeEntity();
 
-            _mockRepository.Setup(m => m.InsertOrUpdate(entity, false)).Returns(entity);
+            _mockRepository.Setup(m => m.Insert(entity)).Returns(entity);
 
             // Act & Assert
-            Assert.Equal(entity, _mockRepository.Object.InsertOrUpdate(entity));
+            Assert.Equal(entity, _mockRepository.Object.Insert(entity));
+        }
+
+        [Fact]
+        public void Update_Entity_Success()
+        {
+            // Arrange
+            var entity = new FakeEntity();
+
+            _mockRepository.Setup(m => m.Update(entity, false)).Returns(entity);
+
+            // Act & Assert
+            Assert.Equal(entity, _mockRepository.Object.Update(entity));
         }
 
         [Fact]
