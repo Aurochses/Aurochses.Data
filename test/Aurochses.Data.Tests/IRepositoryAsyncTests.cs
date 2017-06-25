@@ -85,15 +85,15 @@ namespace Aurochses.Data.Tests
         }
 
         [Fact]
-        public async Task InsertOrUpdateAsync_Entity_Success()
+        public async Task InsertAsync_Entity_Success()
         {
             // Arrange
             var entity = new FakeEntity();
 
-            _mockRepository.Setup(m => m.InsertOrUpdateAsync(entity, false)).ReturnsAsync(entity);
+            _mockRepository.Setup(m => m.InsertAsync(entity)).ReturnsAsync(entity);
 
             // Act & Assert
-            Assert.Equal(entity, await _mockRepository.Object.InsertOrUpdateAsync(entity));
+            Assert.Equal(entity, await _mockRepository.Object.InsertAsync(entity));
         }
     }
 }
