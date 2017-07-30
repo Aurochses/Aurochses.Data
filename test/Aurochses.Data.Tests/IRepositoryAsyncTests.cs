@@ -32,36 +32,38 @@ namespace Aurochses.Data.Tests
         public async Task GetTModelAsync_ById_ReturnModel()
         {
             // Arrange
+            var mapper = new FakeMapper();
             var model = new FakeModel();
 
-            _mockRepository.Setup(m => m.GetAsync<FakeModel>(1)).ReturnsAsync(model);
+            _mockRepository.Setup(m => m.GetAsync<FakeModel>(mapper, 1)).ReturnsAsync(model);
 
             // Act & Assert
-            Assert.Equal(model, await _mockRepository.Object.GetAsync<FakeModel>(1));
+            Assert.Equal(model, await _mockRepository.Object.GetAsync<FakeModel>(mapper, 1));
         }
 
         [Fact]
-        public async Task GetAsync_ByExpression_ReturnListOfEntity()
+        public async Task FindAsync_ByExpression_ReturnListOfEntity()
         {
             // Arrange
             var entity = new FakeEntity();
 
-            _mockRepository.Setup(m => m.GetAsync(x => x.Id == 1)).ReturnsAsync(new List<FakeEntity> { entity });
+            _mockRepository.Setup(m => m.FindAsync(x => x.Id == 1)).ReturnsAsync(new List<FakeEntity> { entity });
 
             // Act & Assert
-            Assert.Contains(entity, await _mockRepository.Object.GetAsync(x => x.Id == 1));
+            Assert.Contains(entity, await _mockRepository.Object.FindAsync(x => x.Id == 1));
         }
 
         [Fact]
-        public async Task GetTModelAsync_ByExpression_ReturnListOfModel()
+        public async Task FindTModelAsync_ByExpression_ReturnListOfModel()
         {
             // Arrange
+            var mapper = new FakeMapper();
             var model = new FakeModel();
 
-            _mockRepository.Setup(m => m.GetAsync<FakeModel>(x => x.Id == 1)).ReturnsAsync(new List<FakeModel> { model });
+            _mockRepository.Setup(m => m.FindAsync<FakeModel>(mapper, x => x.Id == 1)).ReturnsAsync(new List<FakeModel> { model });
 
             // Act & Assert
-            Assert.Contains(model, await _mockRepository.Object.GetAsync<FakeModel>(x => x.Id == 1));
+            Assert.Contains(model, await _mockRepository.Object.FindAsync<FakeModel>(mapper, x => x.Id == 1));
         }
 
         [Fact]
