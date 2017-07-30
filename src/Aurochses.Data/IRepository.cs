@@ -25,9 +25,10 @@ namespace Aurochses.Data
         /// Gets model of type T from repository by identifier.
         /// </summary>
         /// <typeparam name="TModel">The type of the T model.</typeparam>
+        /// <param name="mapper">The mapper.</param>
         /// <param name="id">The identifier.</param>
-        /// <returns>TModel.</returns>
-        TModel Get<TModel>(TType id);
+        /// <returns>TModel</returns>
+        TModel Get<TModel>(IMapper mapper, TType id);
 
         /// <summary>
         /// Asynchronously gets entity of type T from repository by identifier.
@@ -41,39 +42,42 @@ namespace Aurochses.Data
         /// Asynchronously gets model of type T from repository by identifier.
         /// </summary>
         /// <typeparam name="TModel">The type of the T model.</typeparam>
+        /// <param name="mapper">The mapper.</param>
         /// <param name="id">The identifier.</param>
         /// <returns>Task&lt;TModel&gt;.</returns>
-        Task<TModel> GetAsync<TModel>(TType id);
+        Task<TModel> GetAsync<TModel>(IMapper mapper, TType id);
 
         /// <summary>
-        /// Gets enities of type T from repository.
+        /// Finds enities of type T from repository.
         /// </summary>
         /// <param name="filter">Query filter.</param>
         /// <returns><cref>IList{TEntity}</cref>.</returns>
-        IList<TEntity> Get(Expression<Func<TEntity, bool>> filter = null);
+        IList<TEntity> Find(Expression<Func<TEntity, bool>> filter = null);
 
         /// <summary>
-        /// Gets models of type T from repository.
+        /// Finds models of type T from repository.
         /// </summary>
         /// <typeparam name="TModel">The type of the T model.</typeparam>
+        /// <param name="mapper">The mapper.</param>
         /// <param name="filter">Query filter.</param>
         /// <returns>IList&lt;TModel&gt;.</returns>
-        IList<TModel> Get<TModel>(Expression<Func<TEntity, bool>> filter = null);
+        IList<TModel> Find<TModel>(IMapper mapper, Expression<Func<TEntity, bool>> filter = null);
 
         /// <summary>
-        /// Asynchronously gets enities of type T from repository.
+        /// Asynchronously finds enities of type T from repository.
         /// </summary>
         /// <param name="filter">Query filter.</param>
         /// <returns><cref>IList{TEntity}</cref>.</returns>
-        Task<IList<TEntity>> GetAsync(Expression<Func<TEntity, bool>> filter = null);
+        Task<IList<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter = null);
 
         /// <summary>
-        /// Asynchronously gets models of type T from repository.
+        /// Asynchronously finds models of type T from repository.
         /// </summary>
         /// <typeparam name="TModel">The type of the T model.</typeparam>
+        /// <param name="mapper">The mapper.</param>
         /// <param name="filter">The filter.</param>
         /// <returns>Task&lt;IList&lt;TModel&gt;&gt;.</returns>
-        Task<IList<TModel>> GetAsync<TModel>(Expression<Func<TEntity, bool>> filter = null);
+        Task<IList<TModel>> FindAsync<TModel>(IMapper mapper, Expression<Func<TEntity, bool>> filter = null);
 
         /// <summary>
         /// Checks if entity of type T with identifier exists in repository.
