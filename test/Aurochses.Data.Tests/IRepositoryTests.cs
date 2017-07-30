@@ -31,36 +31,38 @@ namespace Aurochses.Data.Tests
         public void GetTModel_ById_ReturnModel()
         {
             // Arrange
+            var mapper = new FakeMapper();
             var model = new FakeModel();
 
-            _mockRepository.Setup(m => m.Get<FakeModel>(1)).Returns(model);
+            _mockRepository.Setup(m => m.Get<FakeModel>(mapper, 1)).Returns(model);
 
             // Act & Assert
-            Assert.Equal(model, _mockRepository.Object.Get<FakeModel>(1));
+            Assert.Equal(model, _mockRepository.Object.Get<FakeModel>(mapper, 1));
         }
 
         [Fact]
-        public void Get_ByExpression_ReturnListOfEntity()
+        public void Find_ByExpression_ReturnListOfEntity()
         {
             // Arrange
             var entity = new FakeEntity();
 
-            _mockRepository.Setup(m => m.Get(x => x.Id == 1)).Returns(new List<FakeEntity> { entity });
+            _mockRepository.Setup(m => m.Find(x => x.Id == 1)).Returns(new List<FakeEntity> { entity });
 
             // Act & Assert
-            Assert.Contains(entity, _mockRepository.Object.Get(x => x.Id == 1));
+            Assert.Contains(entity, _mockRepository.Object.Find(x => x.Id == 1));
         }
 
         [Fact]
-        public void GetTModel_ByExpression_ReturnListOfModel()
+        public void FindTModel_ByExpression_ReturnListOfModel()
         {
             // Arrange
+            var mapper = new FakeMapper();
             var model = new FakeModel();
 
-            _mockRepository.Setup(m => m.Get<FakeModel>(x => x.Id == 1)).Returns(new List<FakeModel> { model });
+            _mockRepository.Setup(m => m.Find<FakeModel>(mapper, x => x.Id == 1)).Returns(new List<FakeModel> { model });
 
             // Act & Assert
-            Assert.Contains(model, _mockRepository.Object.Get<FakeModel>(x => x.Id == 1));
+            Assert.Contains(model, _mockRepository.Object.Find<FakeModel>(mapper, x => x.Id == 1));
         }
 
         [Fact]
