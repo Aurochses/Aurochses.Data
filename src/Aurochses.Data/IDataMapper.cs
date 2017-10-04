@@ -3,12 +3,12 @@
 namespace Aurochses.Data
 {
     /// <summary>
-    /// Interface of mapper.
+    /// Interface of data mapper.
     /// </summary>
-    public interface IMapper
+    public interface IDataMapper
     {
         /// <summary>
-        /// Method to map from a queryable using the provided mapping engine
+        /// Method to map from a queryable using the provided mapping engine.
         /// </summary>
         /// <typeparam name="TDestination">Destination type</typeparam>
         /// <param name="source">Queryable source</param>

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Aurochses.Data.Tests.Fakes
 {
-    public class FakeMapper : IMapper
+    public class FakeDataMapper : IDataMapper
     {
         public IQueryable<TDestination> Map<TDestination>(IQueryable source)
         {

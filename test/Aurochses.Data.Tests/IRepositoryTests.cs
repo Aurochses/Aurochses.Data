@@ -31,13 +31,13 @@ namespace Aurochses.Data.Tests
         public void GetTModel_ById_ReturnModel()
         {
             // Arrange
-            var mapper = new FakeMapper();
+            var dataMapper = new FakeDataMapper();
             var model = new FakeModel();
 
-            _mockRepository.Setup(m => m.Get<FakeModel>(mapper, 1)).Returns(model);
+            _mockRepository.Setup(m => m.Get<FakeModel>(dataMapper, 1)).Returns(model);
 
             // Act & Assert
-            Assert.Equal(model, _mockRepository.Object.Get<FakeModel>(mapper, 1));
+            Assert.Equal(model, _mockRepository.Object.Get<FakeModel>(dataMapper, 1));
         }
 
         [Fact]
@@ -56,13 +56,13 @@ namespace Aurochses.Data.Tests
         public void FindTModel_ByExpression_ReturnListOfModel()
         {
             // Arrange
-            var mapper = new FakeMapper();
+            var dataMapper = new FakeDataMapper();
             var model = new FakeModel();
 
-            _mockRepository.Setup(m => m.Find<FakeModel>(mapper, x => x.Id == 1)).Returns(new List<FakeModel> { model });
+            _mockRepository.Setup(m => m.Find<FakeModel>(dataMapper, x => x.Id == 1)).Returns(new List<FakeModel> { model });
 
             // Act & Assert
-            Assert.Contains(model, _mockRepository.Object.Find<FakeModel>(mapper, x => x.Id == 1));
+            Assert.Contains(model, _mockRepository.Object.Find<FakeModel>(dataMapper, x => x.Id == 1));
         }
 
         [Fact]

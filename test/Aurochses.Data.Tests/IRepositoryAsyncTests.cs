@@ -32,13 +32,13 @@ namespace Aurochses.Data.Tests
         public async Task GetTModelAsync_ById_ReturnModel()
         {
             // Arrange
-            var mapper = new FakeMapper();
+            var dataMapper = new FakeDataMapper();
             var model = new FakeModel();
 
-            _mockRepository.Setup(m => m.GetAsync<FakeModel>(mapper, 1)).ReturnsAsync(model);
+            _mockRepository.Setup(m => m.GetAsync<FakeModel>(dataMapper, 1)).ReturnsAsync(model);
 
             // Act & Assert
-            Assert.Equal(model, await _mockRepository.Object.GetAsync<FakeModel>(mapper, 1));
+            Assert.Equal(model, await _mockRepository.Object.GetAsync<FakeModel>(dataMapper, 1));
         }
 
         [Fact]
@@ -57,13 +57,13 @@ namespace Aurochses.Data.Tests
         public async Task FindTModelAsync_ByExpression_ReturnListOfModel()
         {
             // Arrange
-            var mapper = new FakeMapper();
+            var dataMapper = new FakeDataMapper();
             var model = new FakeModel();
 
-            _mockRepository.Setup(m => m.FindAsync<FakeModel>(mapper, x => x.Id == 1)).ReturnsAsync(new List<FakeModel> { model });
+            _mockRepository.Setup(m => m.FindAsync<FakeModel>(dataMapper, x => x.Id == 1)).ReturnsAsync(new List<FakeModel> { model });
 
             // Act & Assert
-            Assert.Contains(model, await _mockRepository.Object.FindAsync<FakeModel>(mapper, x => x.Id == 1));
+            Assert.Contains(model, await _mockRepository.Object.FindAsync<FakeModel>(dataMapper, x => x.Id == 1));
         }
 
         [Fact]

@@ -25,10 +25,10 @@ namespace Aurochses.Data
         /// Gets model of type T from repository by identifier.
         /// </summary>
         /// <typeparam name="TModel">The type of the T model.</typeparam>
-        /// <param name="mapper">The mapper.</param>
+        /// <param name="dataMapper">The data mapper.</param>
         /// <param name="id">The identifier.</param>
         /// <returns>TModel</returns>
-        TModel Get<TModel>(IMapper mapper, TType id);
+        TModel Get<TModel>(IDataMapper dataMapper, TType id);
 
         /// <summary>
         /// Asynchronously gets entity of type T from repository by identifier.
@@ -42,10 +42,10 @@ namespace Aurochses.Data
         /// Asynchronously gets model of type T from repository by identifier.
         /// </summary>
         /// <typeparam name="TModel">The type of the T model.</typeparam>
-        /// <param name="mapper">The mapper.</param>
+        /// <param name="dataMapper">The data mapper.</param>
         /// <param name="id">The identifier.</param>
         /// <returns>Task&lt;TModel&gt;.</returns>
-        Task<TModel> GetAsync<TModel>(IMapper mapper, TType id);
+        Task<TModel> GetAsync<TModel>(IDataMapper dataMapper, TType id);
 
         /// <summary>
         /// Finds enities of type T from repository.
@@ -58,10 +58,10 @@ namespace Aurochses.Data
         /// Finds models of type T from repository.
         /// </summary>
         /// <typeparam name="TModel">The type of the T model.</typeparam>
-        /// <param name="mapper">The mapper.</param>
+        /// <param name="dataMapper">The data mapper.</param>
         /// <param name="filter">Query filter.</param>
         /// <returns>IList&lt;TModel&gt;.</returns>
-        IList<TModel> Find<TModel>(IMapper mapper, Expression<Func<TEntity, bool>> filter = null);
+        IList<TModel> Find<TModel>(IDataMapper dataMapper, Expression<Func<TEntity, bool>> filter = null);
 
         /// <summary>
         /// Asynchronously finds enities of type T from repository.
@@ -74,10 +74,10 @@ namespace Aurochses.Data
         /// Asynchronously finds models of type T from repository.
         /// </summary>
         /// <typeparam name="TModel">The type of the T model.</typeparam>
-        /// <param name="mapper">The mapper.</param>
+        /// <param name="dataMapper">The data mapper.</param>
         /// <param name="filter">The filter.</param>
         /// <returns>Task&lt;IList&lt;TModel&gt;&gt;.</returns>
-        Task<IList<TModel>> FindAsync<TModel>(IMapper mapper, Expression<Func<TEntity, bool>> filter = null);
+        Task<IList<TModel>> FindAsync<TModel>(IDataMapper dataMapper, Expression<Func<TEntity, bool>> filter = null);
 
         /// <summary>
         /// Checks if entity of type T with identifier exists in repository.
