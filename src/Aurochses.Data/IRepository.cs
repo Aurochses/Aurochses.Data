@@ -16,7 +16,7 @@ namespace Aurochses.Data
         /// If no entity is found, then null is returned.
         /// </summary>
         /// <param name="id">The identifier.</param>
-        /// <returns>TEntity.</returns>
+        /// <returns><cref>TEntity</cref>.</returns>
         TEntity Get(TType id);
 
         /// <summary>
@@ -25,7 +25,7 @@ namespace Aurochses.Data
         /// <typeparam name="TModel">The type of the T model.</typeparam>
         /// <param name="dataMapper">The data mapper.</param>
         /// <param name="id">The identifier.</param>
-        /// <returns>TModel</returns>
+        /// <returns><cref>TModel</cref></returns>
         TModel Get<TModel>(IDataMapper dataMapper, TType id);
 
         /// <summary>
@@ -42,11 +42,11 @@ namespace Aurochses.Data
         /// <typeparam name="TModel">The type of the T model.</typeparam>
         /// <param name="dataMapper">The data mapper.</param>
         /// <param name="id">The identifier.</param>
-        /// <returns>Task&lt;TModel&gt;.</returns>
+        /// <returns><cref>Task{TModel}</cref>.</returns>
         Task<TModel> GetAsync<TModel>(IDataMapper dataMapper, TType id);
 
         /// <summary>
-        /// Gets enities of type T from repository that satisfies a query parameters.
+        /// Gets entities of type T from repository that satisfies a query parameters.
         /// </summary>
         /// <param name="queryParameters">Query parameters.</param>
         /// <returns><cref>IList{TEntity}</cref>.</returns>
@@ -58,11 +58,11 @@ namespace Aurochses.Data
         /// <typeparam name="TModel">The type of the T model.</typeparam>
         /// <param name="dataMapper">The data mapper.</param>
         /// <param name="queryParameters">Query parameters.</param>
-        /// <returns>IList&lt;TModel&gt;.</returns>
+        /// <returns><cref>IList{TModel}</cref>.</returns>
         IList<TModel> GetList<TModel>(IDataMapper dataMapper, QueryParameters<TEntity, TType> queryParameters = null);
 
         /// <summary>
-        /// Asynchronously gets enities of type T from repository that satisfies a query parameters.
+        /// Asynchronously gets entities of type T from repository that satisfies a query parameters.
         /// </summary>
         /// <param name="queryParameters">Query parameters.</param>
         /// <returns><cref>IList{TEntity}</cref>.</returns>
@@ -74,8 +74,40 @@ namespace Aurochses.Data
         /// <typeparam name="TModel">The type of the T model.</typeparam>
         /// <param name="dataMapper">The data mapper.</param>
         /// <param name="queryParameters">Query parameters.</param>
-        /// <returns>Task&lt;IList&lt;TModel&gt;&gt;.</returns>
+        /// <returns><cref>Task{IList{TModel}}</cref>.</returns>
         Task<IList<TModel>> GetListAsync<TModel>(IDataMapper dataMapper, QueryParameters<TEntity, TType> queryParameters = null);
+
+        /// <summary>
+        /// Gets paged list of entities of type T from repository that satisfies a query parameters.
+        /// </summary>
+        /// <param name="queryParameters">Query parameters.</param>
+        /// <returns><cref>PagedResult{TEntity}</cref>.</returns>
+        PagedResult<TEntity> GetPagedList(QueryParameters<TEntity, TType> queryParameters);
+
+        /// <summary>
+        /// Gets paged list of models of type T from repository that satisfies a query parameters.
+        /// </summary>
+        /// <typeparam name="TModel">The type of the T model.</typeparam>
+        /// <param name="dataMapper">The data mapper.</param>
+        /// <param name="queryParameters">Query parameters.</param>
+        /// <returns><cref>PagedResult{TModel}</cref>.</returns>
+        PagedResult<TModel> GetPagedList<TModel>(IDataMapper dataMapper, QueryParameters<TEntity, TType> queryParameters);
+
+        /// <summary>
+        /// Asynchronously gets paged list of entities of type T from repository that satisfies a query parameters.
+        /// </summary>
+        /// <param name="queryParameters">Query parameters.</param>
+        /// <returns><cref>Task{PagedResult{TEntity}}</cref>.</returns>
+        Task<PagedResult<TEntity>> GetPagedListAsync(QueryParameters<TEntity, TType> queryParameters);
+
+        /// <summary>
+        /// Asynchronously gets paged list of models of type T from repository that satisfies a query parameters.
+        /// </summary>
+        /// <typeparam name="TModel">The type of the T model.</typeparam>
+        /// <param name="dataMapper">The data mapper.</param>
+        /// <param name="queryParameters">Query parameters.</param>
+        /// <returns><cref>Task{PagedResult{TModel}}</cref>.</returns>
+        Task<PagedResult<TModel>> GetPagedListAsync<TModel>(IDataMapper dataMapper, QueryParameters<TEntity, TType> queryParameters);
 
         /// <summary>
         /// Checks if entity of type T with identifier exists in repository.

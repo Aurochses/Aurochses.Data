@@ -73,6 +73,37 @@ namespace Aurochses.Data.Tests
         }
 
         [Fact]
+        public async Task GetPagedListAsync_ByQueryParameters_ReturnListOfEntity()
+        {
+            // Arrange
+            var queryParameters = new QueryParameters<FakeEntity, int>();
+            var pagedResult = new PagedResult<FakeEntity>();
+
+            _mockRepository
+                .Setup(m => m.GetPagedListAsync(queryParameters))
+                .ReturnsAsync(pagedResult);
+
+            // Act & Assert
+            Assert.Equal(pagedResult, await _mockRepository.Object.GetPagedListAsync(queryParameters));
+        }
+
+        [Fact]
+        public async Task GetPagedListTModelAsync_ByQueryParameters_ReturnListOfModel()
+        {
+            // Arrange
+            var dataMapper = new FakeDataMapper();
+            var queryParameters = new QueryParameters<FakeEntity, int>();
+            var pagedResult = new PagedResult<FakeModel>();
+
+            _mockRepository
+                .Setup(m => m.GetPagedListAsync<FakeModel>(dataMapper, queryParameters))
+                .ReturnsAsync(pagedResult);
+
+            // Act & Assert
+            Assert.Equal(pagedResult, await _mockRepository.Object.GetPagedListAsync<FakeModel>(dataMapper, queryParameters));
+        }
+
+        [Fact]
         public async Task ExistsAsync_ById_Success()
         {
             // Arrange

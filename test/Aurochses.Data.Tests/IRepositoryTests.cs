@@ -68,6 +68,33 @@ namespace Aurochses.Data.Tests
         }
 
         [Fact]
+        public void GetPagedList_ByQueryParameters_ReturnListOfEntity()
+        {
+            // Arrange
+            var queryParameters = new QueryParameters<FakeEntity, int>();
+            var pagedResult = new PagedResult<FakeEntity>();
+
+            _mockRepository.Setup(m => m.GetPagedList(queryParameters)).Returns(pagedResult);
+
+            // Act & Assert
+            Assert.Equal(pagedResult, _mockRepository.Object.GetPagedList(queryParameters));
+        }
+
+        [Fact]
+        public void GetPagedListTModel_ByQueryParameters_ReturnListOfModel()
+        {
+            // Arrange
+            var dataMapper = new FakeDataMapper();
+            var queryParameters = new QueryParameters<FakeEntity, int>();
+            var pagedResult = new PagedResult<FakeModel>();
+
+            _mockRepository.Setup(m => m.GetPagedList<FakeModel>(dataMapper, queryParameters)).Returns(pagedResult);
+
+            // Act & Assert
+            Assert.Equal(pagedResult, _mockRepository.Object.GetPagedList<FakeModel>(dataMapper, queryParameters));
+        }
+
+        [Fact]
         public void Exists_ById_Success()
         {
             // Arrange
