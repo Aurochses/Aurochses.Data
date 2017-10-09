@@ -32,38 +32,75 @@ namespace Aurochses.Data.Tests
         public async Task GetTModelAsync_ById_ReturnModel()
         {
             // Arrange
-            var mapper = new FakeMapper();
+            var dataMapper = new FakeDataMapper();
             var model = new FakeModel();
 
-            _mockRepository.Setup(m => m.GetAsync<FakeModel>(mapper, 1)).ReturnsAsync(model);
+            _mockRepository.Setup(m => m.GetAsync<FakeModel>(dataMapper, 1)).ReturnsAsync(model);
 
             // Act & Assert
-            Assert.Equal(model, await _mockRepository.Object.GetAsync<FakeModel>(mapper, 1));
+            Assert.Equal(model, await _mockRepository.Object.GetAsync<FakeModel>(dataMapper, 1));
         }
 
         [Fact]
-        public async Task FindAsync_ByExpression_ReturnListOfEntity()
+        public async Task GetListAsync_ByQueryParameters_ReturnListOfEntity()
         {
             // Arrange
+            var queryParameters = new QueryParameters<FakeEntity, int>();
             var entity = new FakeEntity();
 
-            _mockRepository.Setup(m => m.FindAsync(x => x.Id == 1)).ReturnsAsync(new List<FakeEntity> { entity });
+            _mockRepository
+                .Setup(m => m.GetListAsync(queryParameters))
+                .ReturnsAsync(new List<FakeEntity> { entity });
 
             // Act & Assert
-            Assert.Contains(entity, await _mockRepository.Object.FindAsync(x => x.Id == 1));
+            Assert.Contains(entity, await _mockRepository.Object.GetListAsync(queryParameters));
         }
 
         [Fact]
-        public async Task FindTModelAsync_ByExpression_ReturnListOfModel()
+        public async Task GetListTModelAsync_ByQueryParameters_ReturnListOfModel()
         {
             // Arrange
-            var mapper = new FakeMapper();
+            var dataMapper = new FakeDataMapper();
+            var queryParameters = new QueryParameters<FakeEntity, int>();
             var model = new FakeModel();
 
-            _mockRepository.Setup(m => m.FindAsync<FakeModel>(mapper, x => x.Id == 1)).ReturnsAsync(new List<FakeModel> { model });
+            _mockRepository
+                .Setup(m => m.GetListAsync<FakeModel>(dataMapper, queryParameters))
+                .ReturnsAsync(new List<FakeModel> { model });
 
             // Act & Assert
-            Assert.Contains(model, await _mockRepository.Object.FindAsync<FakeModel>(mapper, x => x.Id == 1));
+            Assert.Contains(model, await _mockRepository.Object.GetListAsync<FakeModel>(dataMapper, queryParameters));
+        }
+
+        [Fact]
+        public async Task GetPagedListAsync_ByQueryParameters_ReturnListOfEntity()
+        {
+            // Arrange
+            var queryParameters = new QueryParameters<FakeEntity, int>();
+            var pagedResult = new PagedResult<FakeEntity>();
+
+            _mockRepository
+                .Setup(m => m.GetPagedListAsync(queryParameters))
+                .ReturnsAsync(pagedResult);
+
+            // Act & Assert
+            Assert.Equal(pagedResult, await _mockRepository.Object.GetPagedListAsync(queryParameters));
+        }
+
+        [Fact]
+        public async Task GetPagedListTModelAsync_ByQueryParameters_ReturnListOfModel()
+        {
+            // Arrange
+            var dataMapper = new FakeDataMapper();
+            var queryParameters = new QueryParameters<FakeEntity, int>();
+            var pagedResult = new PagedResult<FakeModel>();
+
+            _mockRepository
+                .Setup(m => m.GetPagedListAsync<FakeModel>(dataMapper, queryParameters))
+                .ReturnsAsync(pagedResult);
+
+            // Act & Assert
+            Assert.Equal(pagedResult, await _mockRepository.Object.GetPagedListAsync<FakeModel>(dataMapper, queryParameters));
         }
 
         [Fact]
@@ -77,13 +114,27 @@ namespace Aurochses.Data.Tests
         }
 
         [Fact]
-        public async Task ExistsAsync_ByExpression_ReturnEntity()
+        public async Task ExistsAsync_ByQueryParameters_Success()
         {
             // Arrange
-            _mockRepository.Setup(m => m.ExistsAsync(x => x.Id == 1)).ReturnsAsync(true);
+            var queryParameters = new QueryParameters<FakeEntity, int>();
+
+            _mockRepository.Setup(m => m.ExistsAsync(queryParameters)).ReturnsAsync(true);
 
             // Act & Assert
-            Assert.True(await _mockRepository.Object.ExistsAsync(x => x.Id == 1));
+            Assert.True(await _mockRepository.Object.ExistsAsync(queryParameters));
+        }
+
+        [Fact]
+        public async Task CountAsync_ByQueryParameters_Success()
+        {
+            // Arrange
+            var queryParameters = new QueryParameters<FakeEntity, int>();
+
+            _mockRepository.Setup(m => m.CountAsync(queryParameters)).ReturnsAsync(1);
+
+            // Act & Assert
+            Assert.Equal(1, await _mockRepository.Object.CountAsync(queryParameters));
         }
 
         [Fact]

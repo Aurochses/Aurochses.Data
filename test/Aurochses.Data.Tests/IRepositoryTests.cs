@@ -31,38 +31,67 @@ namespace Aurochses.Data.Tests
         public void GetTModel_ById_ReturnModel()
         {
             // Arrange
-            var mapper = new FakeMapper();
+            var dataMapper = new FakeDataMapper();
             var model = new FakeModel();
 
-            _mockRepository.Setup(m => m.Get<FakeModel>(mapper, 1)).Returns(model);
+            _mockRepository.Setup(m => m.Get<FakeModel>(dataMapper, 1)).Returns(model);
 
             // Act & Assert
-            Assert.Equal(model, _mockRepository.Object.Get<FakeModel>(mapper, 1));
+            Assert.Equal(model, _mockRepository.Object.Get<FakeModel>(dataMapper, 1));
         }
 
         [Fact]
-        public void Find_ByExpression_ReturnListOfEntity()
+        public void GetList_ByQueryParameters_ReturnListOfEntity()
         {
             // Arrange
+            var queryParameters = new QueryParameters<FakeEntity, int>();
             var entity = new FakeEntity();
 
-            _mockRepository.Setup(m => m.Find(x => x.Id == 1)).Returns(new List<FakeEntity> { entity });
+            _mockRepository.Setup(m => m.GetList(queryParameters)).Returns(new List<FakeEntity> { entity });
 
             // Act & Assert
-            Assert.Contains(entity, _mockRepository.Object.Find(x => x.Id == 1));
+            Assert.Contains(entity, _mockRepository.Object.GetList(queryParameters));
         }
 
         [Fact]
-        public void FindTModel_ByExpression_ReturnListOfModel()
+        public void GetListTModel_ByQueryParameters_ReturnListOfModel()
         {
             // Arrange
-            var mapper = new FakeMapper();
+            var dataMapper = new FakeDataMapper();
+            var queryParameters = new QueryParameters<FakeEntity, int>();
             var model = new FakeModel();
 
-            _mockRepository.Setup(m => m.Find<FakeModel>(mapper, x => x.Id == 1)).Returns(new List<FakeModel> { model });
+            _mockRepository.Setup(m => m.GetList<FakeModel>(dataMapper, queryParameters)).Returns(new List<FakeModel> { model });
 
             // Act & Assert
-            Assert.Contains(model, _mockRepository.Object.Find<FakeModel>(mapper, x => x.Id == 1));
+            Assert.Contains(model, _mockRepository.Object.GetList<FakeModel>(dataMapper, queryParameters));
+        }
+
+        [Fact]
+        public void GetPagedList_ByQueryParameters_ReturnListOfEntity()
+        {
+            // Arrange
+            var queryParameters = new QueryParameters<FakeEntity, int>();
+            var pagedResult = new PagedResult<FakeEntity>();
+
+            _mockRepository.Setup(m => m.GetPagedList(queryParameters)).Returns(pagedResult);
+
+            // Act & Assert
+            Assert.Equal(pagedResult, _mockRepository.Object.GetPagedList(queryParameters));
+        }
+
+        [Fact]
+        public void GetPagedListTModel_ByQueryParameters_ReturnListOfModel()
+        {
+            // Arrange
+            var dataMapper = new FakeDataMapper();
+            var queryParameters = new QueryParameters<FakeEntity, int>();
+            var pagedResult = new PagedResult<FakeModel>();
+
+            _mockRepository.Setup(m => m.GetPagedList<FakeModel>(dataMapper, queryParameters)).Returns(pagedResult);
+
+            // Act & Assert
+            Assert.Equal(pagedResult, _mockRepository.Object.GetPagedList<FakeModel>(dataMapper, queryParameters));
         }
 
         [Fact]
@@ -76,13 +105,27 @@ namespace Aurochses.Data.Tests
         }
 
         [Fact]
-        public void Exists_ByExpression_ReturnEntity()
+        public void Exists_ByQueryParameters_ReturnEntity()
         {
             // Arrange
-            _mockRepository.Setup(m => m.Exists(x => x.Id == 1)).Returns(true);
+            var queryParameters = new QueryParameters<FakeEntity, int>();
+
+            _mockRepository.Setup(m => m.Exists(queryParameters)).Returns(true);
 
             // Act & Assert
-            Assert.True(_mockRepository.Object.Exists(x => x.Id == 1));
+            Assert.True(_mockRepository.Object.Exists(queryParameters));
+        }
+
+        [Fact]
+        public void Count_ByQueryParameters_ReturnModel()
+        {
+            // Arrange
+            var queryParameters = new QueryParameters<FakeEntity, int>();
+
+            _mockRepository.Setup(m => m.Count(queryParameters)).Returns(1);
+
+            // Act & Assert
+            Assert.Equal(1, _mockRepository.Object.Count(queryParameters));
         }
 
         [Fact]

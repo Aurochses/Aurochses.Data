@@ -16,11 +16,5 @@ namespace Aurochses.Data
         /// </summary>
         /// <value>The identifier.</value>
         TType Id { get; set; }
-
-        /// <summary>
-        /// Determines whether this instance is new.
-        /// </summary>
-        /// <returns><c>true</c> if this instance is new; otherwise, <c>false</c>.</returns>
-        bool IsNew();
     }
 }
