@@ -7,13 +7,13 @@ using Xunit;
 namespace Aurochses.Data.Tests
 {
     // ReSharper disable once InconsistentNaming
-    public class IMapperTests
+    public class IDataMapperTests
     {
-        private readonly Mock<IMapper> _mockMapper;
+        private readonly Mock<IDataMapper> _mockDataMapper;
 
-        public IMapperTests()
+        public IDataMapperTests()
         {
-            _mockMapper = new Mock<IMapper>(MockBehavior.Strict);
+            _mockDataMapper = new Mock<IDataMapper>(MockBehavior.Strict);
         }
 
         [Fact]
@@ -23,10 +23,10 @@ namespace Aurochses.Data.Tests
             var queryable = new List<FakeEntity>().AsQueryable();
             var expected = new List<FakeModel>().AsQueryable();
 
-            _mockMapper.Setup(m => m.Map<FakeModel>(queryable)).Returns(expected);
+            _mockDataMapper.Setup(m => m.Map<FakeModel>(queryable)).Returns(expected);
 
             // Act & Assert
-            Assert.Equal(expected, _mockMapper.Object.Map<FakeModel>(queryable));
+            Assert.Equal(expected, _mockDataMapper.Object.Map<FakeModel>(queryable));
         }
     }
 }

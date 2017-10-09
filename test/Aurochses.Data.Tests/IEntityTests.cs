@@ -49,17 +49,5 @@ namespace Aurochses.Data.Tests
             // Assert
             Assert.Equal(id, result);
         }
-
-        [Fact]
-        public void IsNew_Entity_Success()
-        {
-            // Arrange
-            const bool isNew = true;
-
-            _mockEntity.Setup(m => m.IsNew()).Returns(isNew);
-
-            // Act & Assert
-            Assert.Equal(isNew, _mockEntity.Object.IsNew());
-        }
     }
 }
