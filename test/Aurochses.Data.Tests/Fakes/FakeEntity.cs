@@ -10,10 +10,5 @@ namespace Aurochses.Data.Tests.Fakes
         {
             throw new Exception("Equals is fake method!");
         }
-
-        public bool IsNew()
-        {
-            throw new Exception("IsNew is fake method!");
-        }
     }
 }
