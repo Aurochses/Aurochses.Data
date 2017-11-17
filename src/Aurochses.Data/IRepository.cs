@@ -112,20 +112,6 @@ namespace Aurochses.Data
         Task<PagedResult<TModel>> GetPagedListAsync<TModel>(IDataMapper dataMapper, QueryParameters<TEntity, TType> queryParameters);
 
         /// <summary>
-        /// Checks if entity of type T with identifier exists in repository.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns><c>true</c> if exists, <c>false</c> otherwise.</returns>
-        bool Exists(TType id);
-
-        /// <summary>
-        /// Asynchronously checks if entity of type T with identifier exists in repository.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns><c>true</c> if exists, <c>false</c> otherwise.</returns>
-        Task<bool> ExistsAsync(TType id);
-
-        /// <summary>
         /// Checks if any entity of type T satisfies a query parameters.
         /// </summary>
         /// <param name="queryParameters">Query parameters.</param>

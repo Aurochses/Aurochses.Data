@@ -201,5 +201,61 @@ namespace Aurochses.Data.Helpers
         {
             return await repository.GetListAsync<TModel>(dataMapper, QueryParameters<TEntity, TType>.Create(filterExpression));
         }
+
+        /// <summary>
+        /// Checks if entity of type T that satisfies an expression exists in repository.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the T entity.</typeparam>
+        /// <typeparam name="TType">The type of the T type.</typeparam>
+        /// <param name="repository">The repository.</param>
+        /// <param name="filterExpression">The filter expression.</param>
+        /// <returns><c>true</c> if exists, <c>false</c> otherwise.</returns>
+        public static bool Exists<TEntity, TType>(this IRepository<TEntity, TType> repository, Expression<Func<TEntity, bool>> filterExpression)
+            where TEntity : IEntity<TType>
+        {
+            return repository.Exists(QueryParameters<TEntity, TType>.Create(filterExpression));
+        }
+
+        /// <summary>
+        /// Checks if entity of type T with identifier exists in repository.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the T entity.</typeparam>
+        /// <typeparam name="TType">The type of the T type.</typeparam>
+        /// <param name="repository">The repository.</param>
+        /// <param name="id">The identifier.</param>
+        /// <returns><c>true</c> if exists, <c>false</c> otherwise.</returns>
+        public static bool Exists<TEntity, TType>(this IRepository<TEntity, TType> repository, TType id)
+            where TEntity : IEntity<TType>
+        {
+            return repository.Exists(GetIdFilterExpression<TEntity, TType>(id));
+        }
+
+        /// <summary>
+        /// Asynchronously checks if entity of type T that satisfies an expression exists in repository.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the T entity.</typeparam>
+        /// <typeparam name="TType">The type of the T type.</typeparam>
+        /// <param name="repository">The repository.</param>
+        /// <param name="filterExpression">The filter expression.</param>
+        /// <returns><c>true</c> if exists, <c>false</c> otherwise.</returns>
+        public static async Task<bool> ExistsAsync<TEntity, TType>(this IRepository<TEntity, TType> repository, Expression<Func<TEntity, bool>> filterExpression)
+            where TEntity : IEntity<TType>
+        {
+            return await repository.ExistsAsync(QueryParameters<TEntity, TType>.Create(filterExpression));
+        }
+
+        /// <summary>
+        /// Asynchronously checks if entity of type T with identifier exists in repository.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the T entity.</typeparam>
+        /// <typeparam name="TType">The type of the T type.</typeparam>
+        /// <param name="repository">The repository.</param>
+        /// <param name="id">The identifier.</param>
+        /// <returns><c>true</c> if exists, <c>false</c> otherwise.</returns>
+        public static async Task<bool> ExistsAsync<TEntity, TType>(this IRepository<TEntity, TType> repository, TType id)
+            where TEntity : IEntity<TType>
+        {
+            return await repository.ExistsAsync(GetIdFilterExpression<TEntity, TType>(id));
+        }
     }
 }
