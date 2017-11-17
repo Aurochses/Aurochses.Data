@@ -12,38 +12,40 @@ namespace Aurochses.Data
         where TEntity : IEntity<TType>
     {
         /// <summary>
-        /// Gets entity of type T from repository by identifier.
+        /// Gets entity of type T from repository that satisfies a query parameters.
         /// If no entity is found, then null is returned.
         /// </summary>
-        /// <param name="id">The identifier.</param>
+        /// <param name="queryParameters">Query parameters.</param>
         /// <returns><cref>TEntity</cref>.</returns>
-        TEntity Get(TType id);
+        TEntity Get(QueryParameters<TEntity, TType> queryParameters = null);
 
         /// <summary>
-        /// Gets model of type T from repository by identifier.
+        /// Gets model of type T from repository that satisfies a query parameters.
+        /// If no entity is found, then null is returned.
         /// </summary>
         /// <typeparam name="TModel">The type of the T model.</typeparam>
         /// <param name="dataMapper">The data mapper.</param>
-        /// <param name="id">The identifier.</param>
+        /// <param name="queryParameters">Query parameters.</param>
         /// <returns><cref>TModel</cref></returns>
-        TModel Get<TModel>(IDataMapper dataMapper, TType id);
+        TModel Get<TModel>(IDataMapper dataMapper, QueryParameters<TEntity, TType> queryParameters = null);
 
         /// <summary>
-        /// Asynchronously gets entity of type T from repository by identifier.
+        /// Asynchronously gets entity of type T from repository that satisfies a query parameters.
         /// If no entity is found, then null is returned.
         /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns><cref>TEntity</cref>.</returns>
-        Task<TEntity> GetAsync(TType id);
+        /// <param name="queryParameters">Query parameters.</param>
+        /// <returns><cref>Task{TEntity}</cref>.</returns>
+        Task<TEntity> GetAsync(QueryParameters<TEntity, TType> queryParameters = null);
 
         /// <summary>
-        /// Asynchronously gets model of type T from repository by identifier.
+        /// Asynchronously gets model of type T from repository that satisfies a query parameters.
+        /// If no entity is found, then null is returned.
         /// </summary>
         /// <typeparam name="TModel">The type of the T model.</typeparam>
         /// <param name="dataMapper">The data mapper.</param>
-        /// <param name="id">The identifier.</param>
+        /// <param name="queryParameters">Query parameters.</param>
         /// <returns><cref>Task{TModel}</cref>.</returns>
-        Task<TModel> GetAsync<TModel>(IDataMapper dataMapper, TType id);
+        Task<TModel> GetAsync<TModel>(IDataMapper dataMapper, QueryParameters<TEntity, TType> queryParameters = null);
 
         /// <summary>
         /// Gets entities of type T from repository that satisfies a query parameters.
@@ -65,7 +67,7 @@ namespace Aurochses.Data
         /// Asynchronously gets entities of type T from repository that satisfies a query parameters.
         /// </summary>
         /// <param name="queryParameters">Query parameters.</param>
-        /// <returns><cref>IList{TEntity}</cref>.</returns>
+        /// <returns><cref>Task{IList{TModel}}</cref>.</returns>
         Task<IList<TEntity>> GetListAsync(QueryParameters<TEntity, TType> queryParameters = null);
 
         /// <summary>
@@ -108,20 +110,6 @@ namespace Aurochses.Data
         /// <param name="queryParameters">Query parameters.</param>
         /// <returns><cref>Task{PagedResult{TModel}}</cref>.</returns>
         Task<PagedResult<TModel>> GetPagedListAsync<TModel>(IDataMapper dataMapper, QueryParameters<TEntity, TType> queryParameters);
-
-        /// <summary>
-        /// Checks if entity of type T with identifier exists in repository.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns><c>true</c> if exists, <c>false</c> otherwise.</returns>
-        bool Exists(TType id);
-
-        /// <summary>
-        /// Asynchronously checks if entity of type T with identifier exists in repository.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        /// <returns><c>true</c> if exists, <c>false</c> otherwise.</returns>
-        Task<bool> ExistsAsync(TType id);
 
         /// <summary>
         /// Checks if any entity of type T satisfies a query parameters.
