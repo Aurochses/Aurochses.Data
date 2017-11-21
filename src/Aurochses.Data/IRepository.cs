@@ -162,12 +162,6 @@ namespace Aurochses.Data
         TEntity Update(TEntity entity, bool startTrackProperties = false);
 
         /// <summary>
-        /// Deletes the specified entity by identifier.
-        /// </summary>
-        /// <param name="id">The identifier.</param>
-        void Delete(TType id);
-
-        /// <summary>
         /// Deletes the specified entity.
         /// </summary>
         /// <param name="entity">The entity.</param>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 
@@ -139,7 +140,12 @@ namespace Aurochses.Data.Helpers
         private static Expression<Func<TEntity, bool>> GetIdFilterExpression<TEntity, TType>(TType id)
             where TEntity : IEntity<TType>
         {
-            return x => (object) x.Id == (object) id;
+            Expression<Func<TEntity, TType>> property = x => x.Id;
+
+            var leftExpression = property.Body;
+            var rightExpression = Expression.Constant(id, typeof(TType));
+
+            return Expression.Lambda<Func<TEntity, bool>>(Expression.Equal(leftExpression, rightExpression), property.Parameters.Single());
         }
 
         /// <summary>
@@ -256,6 +262,19 @@ namespace Aurochses.Data.Helpers
             where TEntity : IEntity<TType>
         {
             return await repository.ExistsAsync(GetIdFilterExpression<TEntity, TType>(id));
+        }
+
+        /// <summary>
+        /// Deletes the specified entity by identifier.
+        /// </summary>
+        /// <typeparam name="TEntity">The type of the T entity.</typeparam>
+        /// <typeparam name="TType">The type of the T type.</typeparam>
+        /// <param name="repository">The repository.</param>
+        /// <param name="id">The identifier.</param>
+        public static void Delete<TEntity, TType>(this IRepository<TEntity, TType> repository, TType id)
+            where TEntity : IEntity<TType>
+        {
+            repository.Delete(repository.Get(id));
         }
     }
 }

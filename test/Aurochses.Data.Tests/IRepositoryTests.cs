@@ -145,19 +145,6 @@ namespace Aurochses.Data.Tests
         }
 
         [Fact]
-        public void Delete_ById_Success()
-        {
-            // Arrange
-            _mockRepository.Setup(m => m.Delete(1)).Verifiable();
-
-            // Act
-            _mockRepository.Object.Delete(1);
-
-            // Assert
-            _mockRepository.Verify();
-        }
-
-        [Fact]
         public void Delete_ByEntity_Success()
         {
             // Arrange
