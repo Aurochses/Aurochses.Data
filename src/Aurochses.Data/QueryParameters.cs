@@ -10,7 +10,7 @@ namespace Aurochses.Data
     /// <typeparam name="TEntity">The type of the T entity.</typeparam>
     /// <typeparam name="TType">The type of the T type.</typeparam>
     public class QueryParameters<TEntity, TType>
-        where TEntity : IEntity<TType>
+        where TEntity : class, IEntity<TType>
     {
         /// <summary>
         /// Gets or sets filter rule.
