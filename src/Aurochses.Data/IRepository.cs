@@ -9,7 +9,7 @@ namespace Aurochses.Data
     /// <typeparam name="TEntity">The type of the T entity.</typeparam>
     /// <typeparam name="TType">The type of the T type.</typeparam>
     public interface IRepository<TEntity, TType>
-        where TEntity : IEntity<TType>
+        where TEntity : class, IEntity<TType>
     {
         /// <summary>
         /// Gets entity of type T from repository that satisfies a query parameters.
