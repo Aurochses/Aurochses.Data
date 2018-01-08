@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Aurochses.Data.Query;
 
-namespace Aurochses.Data.Helpers
+namespace Aurochses.Data.Extensions
 {
     /// <summary>
-    /// Helpers of repository for data layer.
+    /// Extensions of repository for data layer.
     /// </summary>
-    public static class RepositoryHelpers
+    public static class RepositoryExtensions
     {
         /// <summary>
         /// Gets entity of type T from repository that satisfies an expression.
@@ -23,7 +24,19 @@ namespace Aurochses.Data.Helpers
         public static TEntity Get<TEntity, TType>(this IRepository<TEntity, TType> repository, Expression<Func<TEntity, bool>> filterExpression)
             where TEntity : class, IEntity<TType>
         {
-            return repository.Get(QueryParameters<TEntity, TType>.Create(filterExpression));
+            return repository.Get(GetQueryParameters<TEntity, TType>(filterExpression));
+        }
+
+        private static QueryParameters<TEntity, TType> GetQueryParameters<TEntity, TType>(Expression<Func<TEntity, bool>> filterExpression)
+            where TEntity : class, IEntity<TType>
+        {
+            return new QueryParameters<TEntity, TType>
+            {
+                Filter = new FilterRule<TEntity, TType>
+                {
+                    Expression = filterExpression
+                }
+            };
         }
 
         /// <summary>
@@ -53,7 +66,7 @@ namespace Aurochses.Data.Helpers
         public static TModel Get<TModel, TEntity, TType>(this IRepository<TEntity, TType> repository, IDataMapper dataMapper, Expression<Func<TEntity, bool>> filterExpression)
             where TEntity : class, IEntity<TType>
         {
-            return repository.Get<TModel>(dataMapper, QueryParameters<TEntity, TType>.Create(filterExpression));
+            return repository.Get<TModel>(dataMapper, GetQueryParameters<TEntity, TType>(filterExpression));
         }
 
         /// <summary>
@@ -85,7 +98,7 @@ namespace Aurochses.Data.Helpers
         public static async Task<TEntity> GetAsync<TEntity, TType>(this IRepository<TEntity, TType> repository, Expression<Func<TEntity, bool>> filterExpression)
             where TEntity : class, IEntity<TType>
         {
-            return await repository.GetAsync(QueryParameters<TEntity, TType>.Create(filterExpression));
+            return await repository.GetAsync(GetQueryParameters<TEntity, TType>(filterExpression));
         }
 
         /// <summary>
@@ -117,7 +130,7 @@ namespace Aurochses.Data.Helpers
         public static async Task<TModel> GetAsync<TModel, TEntity, TType>(this IRepository<TEntity, TType> repository, IDataMapper dataMapper, Expression<Func<TEntity, bool>> filterExpression)
             where TEntity : class, IEntity<TType>
         {
-            return await repository.GetAsync<TModel>(dataMapper, QueryParameters<TEntity, TType>.Create(filterExpression));
+            return await repository.GetAsync<TModel>(dataMapper, GetQueryParameters<TEntity, TType>(filterExpression));
         }
 
         /// <summary>
@@ -159,7 +172,7 @@ namespace Aurochses.Data.Helpers
         public static IList<TEntity> GetList<TEntity, TType>(this IRepository<TEntity, TType> repository, Expression<Func<TEntity, bool>> filterExpression)
             where TEntity : class, IEntity<TType>
         {
-            return repository.GetList(QueryParameters<TEntity, TType>.Create(filterExpression));
+            return repository.GetList(GetQueryParameters<TEntity, TType>(filterExpression));
         }
 
         /// <summary>
@@ -175,7 +188,7 @@ namespace Aurochses.Data.Helpers
         public static IList<TModel> GetList<TModel, TEntity, TType>(this IRepository<TEntity, TType> repository, IDataMapper dataMapper, Expression<Func<TEntity, bool>> filterExpression)
             where TEntity : class, IEntity<TType>
         {
-            return repository.GetList<TModel>(dataMapper, QueryParameters<TEntity, TType>.Create(filterExpression));
+            return repository.GetList<TModel>(dataMapper, GetQueryParameters<TEntity, TType>(filterExpression));
         }
 
         /// <summary>
@@ -189,7 +202,7 @@ namespace Aurochses.Data.Helpers
         public static async Task<IList<TEntity>> GetListAsync<TEntity, TType>(this IRepository<TEntity, TType> repository, Expression<Func<TEntity, bool>> filterExpression)
             where TEntity : class, IEntity<TType>
         {
-            return await repository.GetListAsync(QueryParameters<TEntity, TType>.Create(filterExpression));
+            return await repository.GetListAsync(GetQueryParameters<TEntity, TType>(filterExpression));
         }
 
         /// <summary>
@@ -205,7 +218,7 @@ namespace Aurochses.Data.Helpers
         public static async Task<IList<TModel>> GetListAsync<TModel, TEntity, TType>(this IRepository<TEntity, TType> repository, IDataMapper dataMapper, Expression<Func<TEntity, bool>> filterExpression)
             where TEntity : class, IEntity<TType>
         {
-            return await repository.GetListAsync<TModel>(dataMapper, QueryParameters<TEntity, TType>.Create(filterExpression));
+            return await repository.GetListAsync<TModel>(dataMapper, GetQueryParameters<TEntity, TType>(filterExpression));
         }
 
         /// <summary>
@@ -219,7 +232,7 @@ namespace Aurochses.Data.Helpers
         public static bool Exists<TEntity, TType>(this IRepository<TEntity, TType> repository, Expression<Func<TEntity, bool>> filterExpression)
             where TEntity : class, IEntity<TType>
         {
-            return repository.Exists(QueryParameters<TEntity, TType>.Create(filterExpression));
+            return repository.Exists(GetQueryParameters<TEntity, TType>(filterExpression));
         }
 
         /// <summary>
@@ -247,7 +260,7 @@ namespace Aurochses.Data.Helpers
         public static async Task<bool> ExistsAsync<TEntity, TType>(this IRepository<TEntity, TType> repository, Expression<Func<TEntity, bool>> filterExpression)
             where TEntity : class, IEntity<TType>
         {
-            return await repository.ExistsAsync(QueryParameters<TEntity, TType>.Create(filterExpression));
+            return await repository.ExistsAsync(GetQueryParameters<TEntity, TType>(filterExpression));
         }
 
         /// <summary>
