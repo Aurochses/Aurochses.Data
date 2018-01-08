@@ -1,6 +1,4 @@
-﻿using System;
-using System.Linq.Expressions;
-using Aurochses.Data.Query;
+﻿using Aurochses.Data.Query;
 
 namespace Aurochses.Data
 {
@@ -26,16 +24,5 @@ namespace Aurochses.Data
         /// Gets or sets page rule.
         /// </summary>
         public PageRule Page { get; set; }
-
-        internal static QueryParameters<TEntity, TType> Create(Expression<Func<TEntity, bool>> filterExpression)
-        {
-            return new QueryParameters<TEntity, TType>
-            {
-                Filter = new FilterRule<TEntity, TType>
-                {
-                    Expression = filterExpression
-                }
-            };
-        }
     }
 }

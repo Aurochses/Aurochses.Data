@@ -1,6 +1,6 @@
-﻿namespace Aurochses.Data.Tests.Helpers
+﻿namespace Aurochses.Data.Tests.Extensions
 {
-    public class RepositoryHelpersAsyncTests
+    public class RepositoryExtensionsAsyncTests
     {
         //[Fact]
         //public async Task GetAsync_ById_ReturnEntity()
