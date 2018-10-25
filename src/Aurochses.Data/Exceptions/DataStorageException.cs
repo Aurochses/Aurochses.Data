@@ -1,6 +1,7 @@
 using System;
 
-namespace Aurochses.Data.Exceptions
+// ReSharper disable once CheckNamespace
+namespace Aurochses.Data
 {
     /// <summary>
     /// Is used to indicate that data storage got exception.

@@ -1,5 +1,4 @@
-﻿using Aurochses.Data.Query;
-using Xunit;
+﻿using Xunit;
 
 namespace Aurochses.Data.Tests.Query
 {

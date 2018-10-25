@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace Aurochses.Data.Query
+// ReSharper disable once CheckNamespace
+namespace Aurochses.Data
 {
     /// <summary>
     /// Filter rule class.

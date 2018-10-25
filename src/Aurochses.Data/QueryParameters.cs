@@ -1,6 +1,4 @@
-﻿using Aurochses.Data.Query;
-
-namespace Aurochses.Data
+﻿namespace Aurochses.Data
 {
     /// <summary>
     /// Query parameters class.

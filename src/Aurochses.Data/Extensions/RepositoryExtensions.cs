@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using Aurochses.Data.Query;
 
-namespace Aurochses.Data.Extensions
+// ReSharper disable once CheckNamespace
+namespace Aurochses.Data
 {
     /// <summary>
     /// Extensions of repository for data layer.

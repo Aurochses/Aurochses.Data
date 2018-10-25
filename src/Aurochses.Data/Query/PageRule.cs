@@ -1,4 +1,5 @@
-﻿namespace Aurochses.Data.Query
+﻿// ReSharper disable once CheckNamespace
+namespace Aurochses.Data
 {
     /// <summary>
     /// Page rule class.

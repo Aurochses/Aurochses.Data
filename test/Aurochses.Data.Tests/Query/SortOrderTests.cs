@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Reflection;
-using Aurochses.Data.Query;
 using Xunit;
 
 namespace Aurochses.Data.Tests.Query
