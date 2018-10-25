@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq.Expressions;
-using Aurochses.Data.Query;
 using Aurochses.Data.Tests.Fakes;
 using Xunit;
 

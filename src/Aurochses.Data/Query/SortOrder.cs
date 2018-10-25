@@ -1,4 +1,5 @@
-﻿namespace Aurochses.Data.Query
+﻿// ReSharper disable once CheckNamespace
+namespace Aurochses.Data
 {
     /// <summary>
     /// Specifies an order in which to return the search results.
