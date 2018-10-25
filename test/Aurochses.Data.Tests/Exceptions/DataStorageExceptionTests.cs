@@ -1,5 +1,4 @@
-﻿using Aurochses.Data.Exceptions;
-using System;
+﻿using System;
 using Xunit;
 
 namespace Aurochses.Data.Tests.Exceptions

@@ -1,5 +1,4 @@
-﻿using Aurochses.Data.Query;
-using Aurochses.Data.Tests.Fakes;
+﻿using Aurochses.Data.Tests.Fakes;
 using Xunit;
 
 namespace Aurochses.Data.Tests
