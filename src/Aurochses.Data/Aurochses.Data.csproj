@@ -3,40 +3,19 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <Version>2.0.4</Version>
-    <Description>Layer to access data storage with Unit of Work, Repository and Entity classes.</Description>
     <Authors>Aurochses</Authors>
     <Company>Aurochses</Company>
     <Copyright>Aurochses 2017</Copyright>
-    <PackageLicenseUrl>https://github.com/Aurochses/Aurochses.Data/blob/master/LICENSE.txt</PackageLicenseUrl>
+    <Description>Layer to access data storage with Unit of Work, Repository and Entity classes.</Description>
+    <PackageLicenseUrl>https://github.com/Aurochses/Aurochses.Data/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Aurochses/Aurochses.Data/wiki</PackageProjectUrl>
     <RepositoryUrl>https://github.com/Aurochses/Aurochses.Data</RepositoryUrl>
     <PackageTags>Data UnitOfWork Repository Entity</PackageTags>
     <PackageIconUrl>https://www.gravatar.com/avatar/cb5925a77e502401f95bf2738b123994?s=64</PackageIconUrl>
-
-    <!-- Required in both test/product projects. This is a temporary workaround for https://github.com/Microsoft/vstest/issues/800 -->
-    <DebugType>Full</DebugType>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.0\Aurochses.Data.xml</DocumentationFile>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <WarningsAsErrors />
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard2.0\Aurochses.Data.xml</DocumentationFile>
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <WarningsAsErrors />
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Release|netstandard1.4|AnyCPU'">
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <WarningsAsErrors />
-  </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|netstandard1.4|AnyCPU'">
-    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-    <WarningsAsErrors />
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
 
 </Project>
