@@ -2,16 +2,17 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.1.0</Version>
+    <PackageId>Aurochses.Data</PackageId>
+    <Version>2.2.0</Version>
     <Authors>Aurochses</Authors>
     <Company>Aurochses</Company>
+    <Description>Aurochses.Data is a library to access data storage with Unit of Work, Repository and Entity classes.</Description>
     <Copyright>Aurochses 2017</Copyright>
-    <Description>Layer to access data storage with Unit of Work, Repository and Entity classes.</Description>
     <PackageLicenseUrl>https://github.com/Aurochses/Aurochses.Data/blob/master/LICENSE</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/Aurochses/Aurochses.Data/wiki</PackageProjectUrl>
+    <PackageIconUrl>https://www.gravatar.com/avatar/cb5925a77e502401f95bf2738b123994?s=64</PackageIconUrl>
     <RepositoryUrl>https://github.com/Aurochses/Aurochses.Data</RepositoryUrl>
     <PackageTags>Data UnitOfWork Repository Entity</PackageTags>
-    <PackageIconUrl>https://www.gravatar.com/avatar/cb5925a77e502401f95bf2738b123994?s=64</PackageIconUrl>
   </PropertyGroup>
 
   <PropertyGroup>
