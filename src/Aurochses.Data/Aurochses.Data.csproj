@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <PackageId>Aurochses.Data</PackageId>
-    <Version>2.1.0</Version>
+    <Version>2.2.0</Version>
     <Authors>Aurochses</Authors>
     <Company>Aurochses</Company>
     <Description>Aurochses.Data is a library to access data storage with Unit of Work, Repository and Entity classes.</Description>
