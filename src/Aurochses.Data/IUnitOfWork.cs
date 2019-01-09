@@ -13,14 +13,14 @@ namespace Aurochses.Data
         /// Commits all changes.
         /// </summary>
         /// <returns>Number of rows affected.</returns>
-        /// <exception cref="Exceptions.DataStorageException"></exception>
+        /// <exception cref="DataStorageException"></exception>
         int Commit();
 
         /// <summary>
         /// Asynchronously commits all changes.
         /// </summary>
         /// <returns>Number of rows affected.</returns>
-        /// <exception cref="Exceptions.DataStorageException"></exception>
+        /// <exception cref="DataStorageException"></exception>
         Task<int> CommitAsync();
     }
 }

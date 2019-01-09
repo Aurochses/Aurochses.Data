@@ -16,7 +16,7 @@ namespace Aurochses.Data.Tests.Exceptions
         }
 
         [Fact]
-        public void Constuctor_NewItem_Created()
+        public void Constructor_NewItem_Created()
         {
             // Arrange
             const string message = "test exception";
