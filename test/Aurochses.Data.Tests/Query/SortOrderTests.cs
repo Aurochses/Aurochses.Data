@@ -18,26 +18,14 @@ namespace Aurochses.Data.Tests.Query
         public void Validate_Values()
         {
             // Arrange & Act & Assert
-            foreach (var value in Enum.GetValues(typeof(SortOrder)).Cast<SortOrder>())
-            {
-                switch (value)
+            Assert.Equal(
+                new []
                 {
-                    case SortOrder.Ascending:
-                    {
-                        Assert.Equal(0, (int) value);
-                        break;
-                    }
-                    case SortOrder.Descending:
-                    {
-                        Assert.Equal(1, (int) value);
-                        break;
-                    }
-                    default:
-                    {
-                        throw new ArgumentOutOfRangeException(nameof(value), value, "Invalid enum value.");
-                    }
-                }
-            }
+                    SortOrder.Ascending,
+                    SortOrder.Descending
+                },
+                Enum.GetValues(typeof(SortOrder)).Cast<SortOrder>()
+            );
         }
     }
 }
